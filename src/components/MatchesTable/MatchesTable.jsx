@@ -14,10 +14,15 @@ function MatchesTable({
 
     useEffect(() => {
         const checkResult = (home, away) => {
-            home > away || home < away
+            home > away
                 ? setColor({
                       home: 'bg-success',
                       away: 'bg-danger',
+                  })
+                : home < away
+                ? setColor({
+                      home: 'bg-danger',
+                      away: 'bg-success',
                   })
                 : setColor({
                       home: 'bg-warning',
@@ -28,8 +33,8 @@ function MatchesTable({
     }, []);
 
     return (
-        <Table bordered size='sm' className='w-75 mx-auto' variant='dark'> 
-        {/* table not working properly on mobiles, have to work on responsiveness */}
+        <Table bordered size='sm' className='w-75 mx-auto' variant='dark'>
+            {/* table not working properly on mobiles, have to work on responsiveness */}
             <thead>
                 <tr>
                     <th>Home Team</th>
