@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
+import './components/MatchesTable/MatchesTable';
 import './App.css';
+import MatchesTable from './components/MatchesTable/MatchesTable';
 
 function App() {
     const [matches, setMatches] = useState([]);
@@ -10,31 +12,32 @@ function App() {
         );
         const data = await res.json();
 
-        const teamsData = data.schedules.map(game => {
+        const teamsData = data.schedules.map((game) => {
             return {
                 homeTeam: game.sport_event.competitors[0].name,
                 awayTeam: game.sport_event.competitors[1].name,
                 homeScore: game.sport_event_status.home_score,
-                awayScore: game.sport_event_status.away_score
-            }
-        })
+                awayScore: game.sport_event_status.away_score,
+            };
+        });
 
         setMatches(teamsData);
     };
 
-    // useEffect(() => {
-    //     fetchData();
-    // }, []);
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     return (
         <div>
-            {match.map((game, id) => (
-                <div key={id}>
-                    {game.homeTeam} vs{' '}
-                    {game.awayScore} wynik{' '}
-                    {game.homeScore} -{' '}
-                    {game.awayScore}
-                </div>
+            {matches.map((game, id) => (
+                <MatchesTable
+                    key={id}
+                    homeTeam={game.homeTeam}
+                    awayTeam={game.awayTeam}
+                    homeScore={game.homeScore}
+                    awayScore={game.awayScore}
+                />
             ))}
         </div>
     );
