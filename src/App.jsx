@@ -12,14 +12,15 @@ function App() {
         );
         const data = await res.json();
 
-        console.log(data);
-
         const teamsData = data.schedules.map((game) => {
             return {
                 homeTeam: game.sport_event.competitors[0].name,
                 awayTeam: game.sport_event.competitors[1].name,
                 homeScore: game.sport_event_status.home_score,
                 awayScore: game.sport_event_status.away_score,
+                date: game.sport_event.start_time, // still need to work on time format
+                halfTimeScore: game.sport_event_status.status, //right now showing status, having some issues with getting period scores
+                stadium: game.sport_event.venue.name,
             };
         });
 
@@ -39,6 +40,9 @@ function App() {
                     awayTeam={game.awayTeam}
                     homeScore={game.homeScore}
                     awayScore={game.awayScore}
+                    date={game.date}
+                    halfTimeScore={game.halfTimeScore}
+                    stadium={game.stadium}
                 />
             ))}
         </div>
