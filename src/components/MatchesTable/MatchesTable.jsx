@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 
 function MatchesTable({ homeTeam, awayTeam, homeScore, awayScore }) {
     return (
-        <Table striped bordered hover size='sm' className='w-50 mx-auto'>
+        <Table striped bordered hover size='sm' className='w-50 mx-auto' variant='dark'>
             <thead>
                 <tr>
                     <th>Team Names</th>
