@@ -12,6 +12,8 @@ function App() {
         );
         const data = await res.json();
 
+        console.log(data);
+
         const teamsData = data.schedules.map((game) => {
             return {
                 homeTeam: game.sport_event.competitors[0].name,
