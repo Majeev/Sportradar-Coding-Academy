@@ -14,16 +14,27 @@ function App() {
         const data = await res.json();
 
         const teamsData = data.schedules.map((game) => {
+            const {
+                sport_event: { competitors, start_time, venue },
+
+                sport_event_status: { home_score, away_score, period_scores },
+            } = game;
+
+            const [homeTeam, awayTeam] = competitors;
+
             return {
-                homeTeam: game.sport_event.competitors[0].name,
-                awayTeam: game.sport_event.competitors[1].name,
-                homeScore: game.sport_event_status.home_score,
-                awayScore: game.sport_event_status.away_score,
-                date: game.sport_event.start_time,
-                halfTimeScore: game.sport_event_status.period_scores
-                    ? game.sport_event_status.period_scores[0].home_score
-                    : 'Match was postponed',
-                stadium: game.sport_event.venue.name,
+                homeTeam: homeTeam.name,
+                awayTeam: awayTeam.name,
+                homeScore: home_score,
+                awayScore: away_score,
+                date: start_time,
+                homeHalfScore: period_scores
+                    ? period_scores[0].home_score
+                    : null,
+                awayHalfScore: period_scores
+                    ? period_scores[0].away_score
+                    : null,
+                stadium: venue.name,
             };
         });
 
@@ -58,7 +69,8 @@ function App() {
                             11,
                             16
                         )}`}
-                        halfTimeScore={game.halfTimeScore}
+                        homeHalfScore={game.homeHalfScore}
+                        awayHalfScore={game.awayHalfScore}
                         stadium={game.stadium}
                     />
                 ))}

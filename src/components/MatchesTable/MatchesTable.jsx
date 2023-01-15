@@ -6,7 +6,8 @@ function MatchesTable({
     homeScore,
     awayScore,
     date,
-    halfTimeScore,
+    homeHalfScore,
+    awayHalfScore,
     stadium,
 }) {
     const [color, setColor] = useState('');
@@ -39,7 +40,9 @@ function MatchesTable({
                 {homeScore} - {awayScore}
             </td>
             <td>{date}</td>
-            <td>{halfTimeScore}</td>
+            <td>
+                {homeHalfScore} - {awayHalfScore}
+            </td>
             <td>{stadium}</td>
         </tr>
     );
