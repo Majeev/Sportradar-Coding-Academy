@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './components/MatchesTable/MatchesTable';
 import './App.css';
 import MatchesTable from './components/MatchesTable/MatchesTable';
+import Table from 'react-bootstrap/Table';
 
 function App() {
     const [matches, setMatches] = useState([]);
@@ -12,8 +13,6 @@ function App() {
         );
         const data = await res.json();
 
-        // console.log(data.schedules)
-
         const teamsData = data.schedules.map((game) => {
             return {
                 homeTeam: game.sport_event.competitors[0].name,
@@ -21,9 +20,10 @@ function App() {
                 homeScore: game.sport_event_status.home_score,
                 awayScore: game.sport_event_status.away_score,
                 date: game.sport_event.start_time,
-                halfTimeScore: game.sport_event_status.status, //right now showing status, having some issues with getting period scores
-                // stadium: game.sport_event.venue.name,
-                stadium: game.sport_event.sport_event_context.groups[0].name //testing other data due to having issues with period scores
+                halfTimeScore: game.sport_event_status.period_scores
+                    ? game.sport_event_status.period_scores[0].home_score
+                    : 'Match was postponed',
+                stadium: game.sport_event.venue.name,
             };
         });
 
@@ -35,20 +35,35 @@ function App() {
     }, []);
 
     return (
-        <div>
-            {matches.map((game, id) => (
-                <MatchesTable
-                    key={id}
-                    homeTeam={game.homeTeam}
-                    awayTeam={game.awayTeam}
-                    homeScore={game.homeScore}
-                    awayScore={game.awayScore}
-                    date={`${game.date.slice(0,10)} ${game.date.slice(11,16)}`}
-                    halfTimeScore={game.halfTimeScore}
-                    stadium={game.stadium}
-                />
-            ))}
-        </div>
+        <Table bordered size='sm' className='w-75 mx-auto' variant='dark'>
+            <thead>
+                <tr>
+                    <th>Home Team</th>
+                    <th>Away Team</th>
+                    <th>Result</th>
+                    <th>Date</th>
+                    <th>Half time score</th>
+                    <th>Stadium</th>
+                </tr>
+            </thead>
+            <tbody>
+                {matches.map((game, id) => (
+                    <MatchesTable
+                        key={id}
+                        homeTeam={game.homeTeam}
+                        awayTeam={game.awayTeam}
+                        homeScore={game.homeScore}
+                        awayScore={game.awayScore}
+                        date={`${game.date.slice(0, 10)} ${game.date.slice(
+                            11,
+                            16
+                        )}`}
+                        halfTimeScore={game.halfTimeScore}
+                        stadium={game.stadium}
+                    />
+                ))}
+            </tbody>
+        </Table>
     );
 }
 
