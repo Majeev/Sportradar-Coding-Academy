@@ -1,26 +1,50 @@
-import React from 'react';
-import Table from 'react-bootstrap/Table';
+import React, { useEffect, useState } from 'react';
 
-function MatchesTable({ homeTeam, awayTeam, homeScore, awayScore }) {
+function MatchesTable({
+    homeTeam,
+    awayTeam,
+    homeScore,
+    awayScore,
+    date,
+    homeHalfScore,
+    awayHalfScore,
+    stadium,
+}) {
+    const [color, setColor] = useState('');
+
+    useEffect(() => {
+        const checkResult = (home, away) => {
+            home > away
+                ? setColor({
+                      home: 'bg-success',
+                      away: 'bg-danger',
+                  })
+                : home < away
+                ? setColor({
+                      home: 'bg-danger',
+                      away: 'bg-success',
+                  })
+                : setColor({
+                      home: 'bg-warning',
+                      away: 'bg-warning',
+                  });
+        };
+        checkResult(homeScore, awayScore);
+    }, []);
+
     return (
-        <Table striped bordered hover size='sm' className='w-50 mx-auto' variant='dark'>
-            <thead>
-                <tr>
-                    <th>Team Names</th>
-                    <th>Results</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td className='w-75'>
-                        {homeTeam} vs {awayTeam}
-                    </td>
-                    <td>
-                        {homeScore} - {awayScore}
-                    </td>
-                </tr>
-            </tbody>
-        </Table>
+        <tr>
+            <td className={color.home}>{homeTeam}</td>
+            <td className={color.away}>{awayTeam}</td>
+            <td>
+                {homeScore} - {awayScore}
+            </td>
+            <td>{date}</td>
+            <td>
+                {homeHalfScore} - {awayHalfScore}
+            </td>
+            <td>{stadium}</td>
+        </tr>
     );
 }
 
