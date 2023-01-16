@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import './components/MatchesTable/MatchesTable';
+import './components/TableBody/TableBody';
 import './App.css';
-import MatchesTable from './components/MatchesTable/MatchesTable';
+import TableBody from './components/TableBody/TableBody';
+import TableHeaders from './components/TableHeaders/TableHeaders';
 import Table from 'react-bootstrap/Table';
 
 function App() {
@@ -13,11 +14,18 @@ function App() {
         );
         const data = await res.json();
 
+        console.log(data.schedules);
+
         const teamsData = data.schedules.map((game) => {
             const {
                 sport_event: { competitors, start_time, venue },
 
-                sport_event_status: { home_score, away_score, period_scores },
+                sport_event_status: {
+                    home_score,
+                    away_score,
+                    period_scores,
+                    status,
+                },
             } = game;
 
             const [homeTeam, awayTeam] = competitors;
@@ -35,6 +43,7 @@ function App() {
                     ? period_scores[0].away_score
                     : null,
                 stadium: venue.name,
+                status: status,
             };
         });
 
@@ -46,36 +55,25 @@ function App() {
     }, []);
 
     return (
-        <Table bordered size='sm' className='w-75 mx-auto' variant='dark'>
-            <thead>
-                <tr>
-                    <th>Home Team</th>
-                    <th>Away Team</th>
-                    <th>Result</th>
-                    <th>Date</th>
-                    <th>Half time score</th>
-                    <th>Stadium</th>
-                </tr>
-            </thead>
-            <tbody>
-                {matches.map((game, id) => (
-                    <MatchesTable
-                        key={id}
-                        homeTeam={game.homeTeam}
-                        awayTeam={game.awayTeam}
-                        homeScore={game.homeScore}
-                        awayScore={game.awayScore}
-                        date={`${game.date.slice(0, 10)} ${game.date.slice(
-                            11,
-                            16
-                        )}`}
-                        homeHalfScore={game.homeHalfScore}
-                        awayHalfScore={game.awayHalfScore}
-                        stadium={game.stadium}
-                    />
-                ))}
-            </tbody>
-        </Table>
+        <TableHeaders>
+            {matches.map((game, id) => (
+                <TableBody
+                    key={id}
+                    homeTeam={game.homeTeam}
+                    awayTeam={game.awayTeam}
+                    homeScore={game.homeScore}
+                    awayScore={game.awayScore}
+                    date={`${game.date.slice(0, 10)} ${game.date.slice(
+                        11,
+                        16
+                    )}`}
+                    homeHalfScore={game.homeHalfScore}
+                    awayHalfScore={game.awayHalfScore}
+                    stadium={game.stadium}
+                    status={game.status}
+                />
+            ))}
+        </TableHeaders>
     );
 }
 
