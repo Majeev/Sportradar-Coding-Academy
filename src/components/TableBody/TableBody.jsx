@@ -9,11 +9,12 @@ function TableBody({
     homeHalfScore,
     awayHalfScore,
     stadium,
+    status,
 }) {
     const [color, setColor] = useState('');
 
     useEffect(() => {
-        const checkResult = (home, away) => {
+        const checkResult = (home, away, status) => {
             home > away
                 ? setColor({
                       home: 'bg-success',
@@ -24,12 +25,18 @@ function TableBody({
                       home: 'bg-danger',
                       away: 'bg-success',
                   })
-                : setColor({
+                : home === away && status !== 'postponed'
+                ? setColor({
                       home: 'bg-warning',
                       away: 'bg-warning',
+                  })
+                : setColor({
+                      home: '',
+                      away: '',
                   });
         };
-        checkResult(homeScore, awayScore);
+
+        checkResult(homeScore, awayScore, status);
     }, []);
 
     return (
@@ -37,11 +44,15 @@ function TableBody({
             <td className={color.home}>{homeTeam}</td>
             <td className={color.away}>{awayTeam}</td>
             <td>
-                {homeScore} - {awayScore}
+                {status !== 'postponed'
+                    ? `${homeScore} - ${awayScore}`
+                    : 'Postponed'}
             </td>
             <td>{date}</td>
             <td>
-                {homeHalfScore} - {awayHalfScore}
+                {status !== 'postponed'
+                    ? `${homeHalfScore} - ${awayHalfScore}`
+                    : 'Postponed'}
             </td>
             <td>{stadium}</td>
         </tr>
