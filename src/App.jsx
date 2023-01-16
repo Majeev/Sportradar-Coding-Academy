@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './components/MatchesTable/MatchesTable';
 import './App.css';
 import MatchesTable from './components/MatchesTable/MatchesTable';
-import Table from 'react-bootstrap/Table';
+import TableHeaders from './components/TableHeaders/TableHeaders';
 
 function App() {
     const [matches, setMatches] = useState([]);
@@ -46,36 +46,24 @@ function App() {
     }, []);
 
     return (
-        <Table bordered size='sm' className='w-75 mx-auto' variant='dark'>
-            <thead>
-                <tr>
-                    <th>Home Team</th>
-                    <th>Away Team</th>
-                    <th>Result</th>
-                    <th>Date</th>
-                    <th>Half time score</th>
-                    <th>Stadium</th>
-                </tr>
-            </thead>
-            <tbody>
-                {matches.map((game, id) => (
-                    <MatchesTable
-                        key={id}
-                        homeTeam={game.homeTeam}
-                        awayTeam={game.awayTeam}
-                        homeScore={game.homeScore}
-                        awayScore={game.awayScore}
-                        date={`${game.date.slice(0, 10)} ${game.date.slice(
-                            11,
-                            16
-                        )}`}
-                        homeHalfScore={game.homeHalfScore}
-                        awayHalfScore={game.awayHalfScore}
-                        stadium={game.stadium}
-                    />
-                ))}
-            </tbody>
-        </Table>
+        <TableHeaders>
+            {matches.map((game, id) => (
+                <MatchesTable
+                    key={id}
+                    homeTeam={game.homeTeam}
+                    awayTeam={game.awayTeam}
+                    homeScore={game.homeScore}
+                    awayScore={game.awayScore}
+                    date={`${game.date.slice(0, 10)} ${game.date.slice(
+                        11,
+                        16
+                    )}`}
+                    homeHalfScore={game.homeHalfScore}
+                    awayHalfScore={game.awayHalfScore}
+                    stadium={game.stadium}
+                />
+            ))}
+        </TableHeaders>
     );
 }
 
