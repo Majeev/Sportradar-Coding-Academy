@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import './components/MatchesTable/MatchesTable';
+import './components/TableBody/TableBody';
 import './App.css';
-import MatchesTable from './components/MatchesTable/MatchesTable';
+import TableBody from './components/TableBody/TableBody';
 import TableHeaders from './components/TableHeaders/TableHeaders';
 
 function App() {
@@ -48,7 +48,7 @@ function App() {
     return (
         <TableHeaders>
             {matches.map((game, id) => (
-                <MatchesTable
+                <TableBody
                     key={id}
                     homeTeam={game.homeTeam}
                     awayTeam={game.awayTeam}

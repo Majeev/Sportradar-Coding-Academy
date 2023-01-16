@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function MatchesTable({
+function TableBody({
     homeTeam,
     awayTeam,
     homeScore,
@@ -48,4 +48,4 @@ function MatchesTable({
     );
 }
 
-export default MatchesTable;
+export default TableBody;
