@@ -3,20 +3,34 @@ import './components/TableBody/TableBody';
 import './App.css';
 import TableBody from './components/TableBody/TableBody';
 import TableHeaders from './components/TableHeaders/TableHeaders';
-import Table from 'react-bootstrap/Table';
+import SeasonsDropdown from './components/SeasonsDropdown/SeasonsDropdown';
+import SeasonsOption from './components/SeasonsOption/SeasonsOption';
+import Container from 'react-bootstrap/Container';
 
 function App() {
+    const [seasonId, setSeasonId] = useState('sr:season:77453');
     const [matches, setMatches] = useState([]);
+    const [allSeasons, setAllSeasons] = useState([]);
+
+    //Data Fetch
 
     const fetchData = async () => {
-        const res = await fetch(
-            'https://api.sportradar.us/soccer/trial/v4/en/seasons/sr:season:77453/schedules.json?api_key=xhe2be3cvt86v6a2s8p98rf3'
-        );
-        const data = await res.json();
+        const [resMatches, resSeasons] = await Promise.all([
+            fetch(
+                `https://api.sportradar.us/soccer/trial/v4/en/seasons/${seasonId}/schedules.json?api_key=xhe2be3cvt86v6a2s8p98rf3`
+            ),
+            fetch(
+                'https://api.sportradar.us/soccer/trial/v4/en/competitions/sr:competition:202/seasons.json?api_key=xhe2be3cvt86v6a2s8p98rf3'
+            ),
+        ]);
 
-        console.log(data.schedules);
+        const dataMatches = await resMatches.json();
+        const dataSeasons = await resSeasons.json();
 
-        const teamsData = data.schedules.map((game) => {
+        setAllSeasons(dataSeasons.seasons);
+
+        // Mapping and destructuring matches data
+        const teamsData = dataMatches.schedules.map((game) => {
             const {
                 sport_event: { competitors, start_time, venue },
 
@@ -50,30 +64,50 @@ function App() {
         setMatches(teamsData);
     };
 
+    //UseEffects
+
+    //Triggers every time user picks another season from dropdown
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [seasonId]);
+
+    //onEvent functions
+
+    const handleChange = (option) => {
+        setSeasonId(option);
+    };
 
     return (
-        <TableHeaders>
-            {matches.map((game, id) => (
-                <TableBody
-                    key={id}
-                    homeTeam={game.homeTeam}
-                    awayTeam={game.awayTeam}
-                    homeScore={game.homeScore}
-                    awayScore={game.awayScore}
-                    date={`${game.date.slice(0, 10)} ${game.date.slice(
-                        11,
-                        16
-                    )}`}
-                    homeHalfScore={game.homeHalfScore}
-                    awayHalfScore={game.awayHalfScore}
-                    stadium={game.stadium}
-                    status={game.status}
-                />
-            ))}
-        </TableHeaders>
+        <Container fluid='lg'>
+            <SeasonsDropdown onChange={handleChange}>
+                {allSeasons.map((season) => (
+                    <SeasonsOption
+                        name={season.name}
+                        id={season.id}
+                        key={season.id}
+                    />
+                ))}
+            </SeasonsDropdown>
+            <TableHeaders>
+                {matches.map((game, id) => (
+                    <TableBody
+                        key={id}
+                        homeTeam={game.homeTeam}
+                        awayTeam={game.awayTeam}
+                        homeScore={game.homeScore}
+                        awayScore={game.awayScore}
+                        date={`${game.date.slice(0, 10)} ${game.date.slice(
+                            11,
+                            16
+                        )}`}
+                        homeHalfScore={game.homeHalfScore}
+                        awayHalfScore={game.awayHalfScore}
+                        stadium={game.stadium}
+                        status={game.status}
+                    />
+                ))}
+            </TableHeaders>
+        </Container>
     );
 }
 

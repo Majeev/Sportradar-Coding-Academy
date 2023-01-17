@@ -37,7 +37,7 @@ function TableBody({
         };
 
         checkResult(homeScore, awayScore, status);
-    }, []);
+    }, [date]);
 
     return (
         <tr>
