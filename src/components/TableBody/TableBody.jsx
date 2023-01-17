@@ -25,7 +25,7 @@ function TableBody({
                       home: 'bg-danger',
                       away: 'bg-success',
                   })
-                : home === away && status !== 'postponed'
+                : home === away && status === 'closed'
                 ? setColor({
                       home: 'bg-warning',
                       away: 'bg-warning',
@@ -44,15 +44,15 @@ function TableBody({
             <td className={color.home}>{homeTeam}</td>
             <td className={color.away}>{awayTeam}</td>
             <td>
-                {status !== 'postponed'
-                    ? `${homeScore} - ${awayScore}`
-                    : 'Postponed'}
+                {status === 'closed' 
+                    ? `${homeScore} - ${awayScore}` 
+                    : status}
             </td>
             <td>{date}</td>
             <td>
-                {status !== 'postponed'
+                {status === 'closed'
                     ? `${homeHalfScore} - ${awayHalfScore}`
-                    : 'Postponed'}
+                    : status}
             </td>
             <td>{stadium}</td>
         </tr>
