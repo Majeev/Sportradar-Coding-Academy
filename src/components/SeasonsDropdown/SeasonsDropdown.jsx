@@ -1,18 +1,15 @@
 import React from 'react';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import Form from 'react-bootstrap/Form';
 
-function SeasonsDropdown({ children, onSelect }) {
-    const handleSelect = (value) => {
-        onSelect(value);
+function SeasonsDropdown({ children, onChange }) {
+    const handleChange = (e) => {
+        onChange(e.target.value);
     };
 
     return (
-        <DropdownButton
-            id='dropdown-basic-button'
-            title='season'
-            onSelect={handleSelect}>
+        <Form.Select className='select' onChange={handleChange}>
             {children}
-        </DropdownButton>
+        </Form.Select>
     );
 }
 

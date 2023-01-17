@@ -2,3 +2,21 @@ body {
     background-color: #1f1f1f;
     overflow-x: hidden;
 }
+
+.select {
+    background-color: transparent;
+    color: white;
+    border: none;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 0;
+}
+
+option {
+    background-color: #f1f3f4;
+    color: black;
+}
+
+.select:focus {
+    box-shadow: inset 0 0 10px rgba(102, 175, 233, 0.6);
+}

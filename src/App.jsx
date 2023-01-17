@@ -4,7 +4,7 @@ import './App.css';
 import TableBody from './components/TableBody/TableBody';
 import TableHeaders from './components/TableHeaders/TableHeaders';
 import SeasonsDropdown from './components/SeasonsDropdown/SeasonsDropdown';
-import SeasonsItems from './components/SeasonsItems/SeasonsItems';
+import SeasonsOption from './components/SeasonsOption/SeasonsOption';
 import Container from 'react-bootstrap/Container';
 
 function App() {
@@ -73,15 +73,15 @@ function App() {
 
     //onEvent functions
 
-    const handleSelect = (value) => {
-        setSeasonId(value);
+    const handleChange = (option) => {
+        setSeasonId(option);
     };
 
     return (
         <Container fluid='lg'>
-            <SeasonsDropdown onSelect={handleSelect}>
+            <SeasonsDropdown onChange={handleChange}>
                 {allSeasons.map((season) => (
-                    <SeasonsItems
+                    <SeasonsOption
                         name={season.name}
                         id={season.id}
                         key={season.id}
