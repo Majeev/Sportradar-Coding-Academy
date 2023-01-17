@@ -72,8 +72,8 @@ function App() {
 
     //onEvent functions
 
-    const handleSelect = (item) => {
-        setSeasonId(item);
+    const handleSelect = (value) => {
+        setSeasonId(value);
     };
 
     return (
