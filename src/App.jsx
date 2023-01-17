@@ -5,6 +5,7 @@ import TableBody from './components/TableBody/TableBody';
 import TableHeaders from './components/TableHeaders/TableHeaders';
 import SeasonsDropdown from './components/SeasonsDropdown/SeasonsDropdown';
 import SeasonsItems from './components/SeasonsItems/SeasonsItems';
+import Container from 'react-bootstrap/Container';
 
 function App() {
     const [seasonId, setSeasonId] = useState('sr:season:77453');
@@ -77,7 +78,7 @@ function App() {
     };
 
     return (
-        <div className='App'>
+        <Container fluid='lg'>
             <SeasonsDropdown onSelect={handleSelect}>
                 {allSeasons.map((season) => (
                     <SeasonsItems
@@ -106,7 +107,7 @@ function App() {
                     />
                 ))}
             </TableHeaders>
-        </div>
+        </Container>
     );
 }
 
