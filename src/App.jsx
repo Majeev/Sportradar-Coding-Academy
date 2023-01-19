@@ -28,11 +28,12 @@ function App() {
         const dataSeasons = await resSeasons.json();
 
         setAllSeasons(dataSeasons.seasons);
+        console.log(dataMatches)
 
         // Mapping and destructuring matches data
         const teamsData = dataMatches.schedules.map((game) => {
             const {
-                sport_event: { competitors, start_time, venue },
+                sport_event: {id, competitors, start_time, venue },
 
                 sport_event_status: {
                     home_score,
@@ -45,6 +46,7 @@ function App() {
             const [homeTeam, awayTeam] = competitors;
 
             return {
+                id: id,
                 homeTeam: homeTeam.name,
                 awayTeam: awayTeam.name,
                 homeScore: home_score,
@@ -89,9 +91,9 @@ function App() {
                 ))}
             </SeasonsDropdown>
             <TableHeaders>
-                {matches.map((game, id) => (
+                {matches.map((game) => (
                     <TableBody
-                        key={id}
+                        key={game.id}
                         homeTeam={game.homeTeam}
                         awayTeam={game.awayTeam}
                         homeScore={game.homeScore}
