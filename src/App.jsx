@@ -94,6 +94,7 @@ function App() {
                 {matches.map((game) => (
                     <TableBody
                         key={game.id}
+                        id={game.id}
                         homeTeam={game.homeTeam}
                         awayTeam={game.awayTeam}
                         homeScore={game.homeScore}
