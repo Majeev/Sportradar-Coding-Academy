@@ -12,7 +12,10 @@ function TableBody({
     status,
 }) {
     const [color, setColor] = useState('');
+    let formatedStatus = ''
 
+    status === 'postponed' || status === 'cancelled' ? formatedStatus = status.charAt(0).toUpperCase() + status.slice(1) : status
+    
     useEffect(() => {
         const checkResult = (home, away, status) => {
             home > away
@@ -37,6 +40,8 @@ function TableBody({
         };
 
         checkResult(homeScore, awayScore, status);
+        
+
     }, [date]);
 
     return (
@@ -46,13 +51,13 @@ function TableBody({
             <td>
                 {status === 'closed' 
                     ? `${homeScore} - ${awayScore}` 
-                    : status}
+                    : formatedStatus}
             </td>
             <td>{date}</td>
             <td>
                 {status === 'closed'
                     ? `${homeHalfScore} - ${awayHalfScore}`
-                    : status}
+                    : formatedStatus}
             </td>
             <td>{stadium}</td>
         </tr>
