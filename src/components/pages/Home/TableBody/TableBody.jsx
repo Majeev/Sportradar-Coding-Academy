@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function TableBody({
+    id,
     homeTeam,
     awayTeam,
     homeScore,
@@ -12,10 +14,12 @@ function TableBody({
     status,
 }) {
     const [color, setColor] = useState('');
-    let formatedStatus = ''
+    let formatedStatus = '';
 
-    status === 'postponed' || status === 'cancelled' ? formatedStatus = status.charAt(0).toUpperCase() + status.slice(1) : status
-    
+    status === 'postponed' || status === 'cancelled'
+        ? (formatedStatus = status.charAt(0).toUpperCase() + status.slice(1))
+        : status;
+
     useEffect(() => {
         const checkResult = (home, away, status) => {
             home > away
@@ -40,17 +44,20 @@ function TableBody({
         };
 
         checkResult(homeScore, awayScore, status);
-        
-
     }, [date]);
 
+    const navigate = useNavigate();
+    const handleOnClick = () => {
+        navigate(`/match/${id}`, { replace: true }), [navigate];
+    };
+
     return (
-        <tr>
+        <tr onClick={() => handleOnClick({ id })}>
             <td className={color.home}>{homeTeam}</td>
             <td className={color.away}>{awayTeam}</td>
             <td>
-                {status === 'closed' 
-                    ? `${homeScore} - ${awayScore}` 
+                {status === 'closed'
+                    ? `${homeScore} - ${awayScore}`
                     : formatedStatus}
             </td>
             <td>{date}</td>
