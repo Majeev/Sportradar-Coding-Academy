@@ -1,0 +1,16 @@
+.navbar {
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+}
+
+.navbar > * {
+    margin: 0.3rem;
+    padding: 1rem 0;
+    font-weight: 400;
+}
+
+.navbar__return {
+    translate: 0 -3%;
+    color: white;
+    margin-left: 2.4rem;
+}

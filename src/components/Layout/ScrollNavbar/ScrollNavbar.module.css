@@ -1,0 +1,28 @@
+.scroll__navbar,
+.scroll__moved {
+    background-color: #ffffff;
+    z-index: 100;
+    transition: all 0.5s;
+}
+
+.scroll__navbar {
+    top: -100px;
+}
+
+.scroll__moved {
+    top: 0;
+    transition: all 0.5s ease-out;
+}
+
+.scroll__navbar > * {
+    margin: 0 2rem;
+}
+
+.result__container {
+    width: 100%;
+    max-width: 632px;
+}
+
+.score__container > * {
+    margin: 0 2rem;
+}

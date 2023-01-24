@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 
 function TableHeaders({ children }) {
     return (
-        <Table bordered size='sm' variant='dark'>
+        <Table bordered responsive hover className='align-middle'>
             <thead>
                 <tr>
                     <th>Home Team</th>

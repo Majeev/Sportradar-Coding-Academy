@@ -1,0 +1,8 @@
+.button {
+    transition: all 0.5s;
+}
+
+.button:hover,
+.button:active {
+    background-color: rgba(170, 170, 170, 0.4);
+}
