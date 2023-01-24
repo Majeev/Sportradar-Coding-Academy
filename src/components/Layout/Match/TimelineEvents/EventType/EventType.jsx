@@ -1,5 +1,5 @@
 import React from 'react';
-import * as icon from '../../icons';
+import * as icon from '../../../../icons';
 import css from './EventType.module.css';
 
 function EventType({ info }) {

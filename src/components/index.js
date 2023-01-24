@@ -1,17 +1,17 @@
-import Navbar from './Navbar/Navbar';
-import MatchInfo from './MatchInfo/MatchInfo';
+import Navbar from './Layout/Navbar/Navbar';
+import MatchInfo from './Layout/Match/MatchInfo/MatchInfo';
 import SeasonsDropdown from './Layout/SeasonFilter/SeasonsDropdown/SeasonsDropdown';
-import SeasonsOption from './SeasonsOption/SeasonsOption';
-import TableBody from './Layout/AllMatches/TableBody/TableBody';
-import TableHeaders from './TableHeaders/TableHeaders';
+import SeasonsOption from './Layout/SeasonFilter/SeasonsOption/SeasonsOption';
+import TableContent from './Layout/AllMatches/TableContent/TableContent';
+import TableHeaders from './Layout/AllMatches/TableHeaders/TableHeaders';
 import Backdrop from './UI/Backdrop/Backdrop';
 import Card from './UI/Card/Card';
 import Header from './Layout/Header/Header';
-import ScrollNavbar from './ScrollNavbar/ScrollNavbar';
-import Goal from './TimelineEvents/Goal/Goal';
-import EventType from './TimelineEvents/EventType/EventType';
-import EventDetails from './TimelineEvents/EventDetails/EventDetails';
-import MatchStatistics from './MatchStatistics/MatchStatistics';
+import AltNavbar from './Layout/AltNavbar/AltNavbar/';
+import Goal from './Layout/Match/TimelineEvents/Goal/Goal';
+import EventType from './Layout/Match/TimelineEvents/EventType/EventType';
+import EventDetails from './Layout/Match/TimelineEvents/EventDetails/EventDetails';
+import MatchStatistics from './Layout/Match/MatchStatistics/MatchStatistics';
 import Button from './UI/Button/Button';
 
 export {
@@ -19,12 +19,12 @@ export {
     MatchInfo,
     SeasonsDropdown,
     SeasonsOption,
-    TableBody,
+    TableContent,
     TableHeaders,
     Backdrop,
     Card,
     Header,
-    ScrollNavbar,
+    AltNavbar,
     Goal,
     EventType,
     EventDetails,

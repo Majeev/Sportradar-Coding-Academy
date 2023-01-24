@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './Navbar.module.css';
 import { useNavigate } from 'react-router-dom';
-import { FiArrowLeft } from '../icons';
+import { FiArrowLeft } from '../../icons';
 
 function Navbar({ data }) {
     const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {
-    TableBody,
+    TableContent,
     TableHeaders,
     SeasonsDropdown,
     SeasonsOption,
@@ -121,7 +121,7 @@ function Home() {
                     </SeasonsDropdown>
                     <TableHeaders>
                         {matches.map((game) => (
-                            <TableBody key={game.id} data={game} />
+                            <TableContent key={game.id} data={game} />
                         ))}
                     </TableHeaders>
                 </Container>

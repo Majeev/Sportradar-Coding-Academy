@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
-import css from './ScrollNavbar.module.css';
+import css from './AltNavbar.module.css';
 
-function ScrollNavbar({ data }) {
+function AltNavbar({ data }) {
     const [userScrolled, setUserScrolled] = useState(false);
 
     const showNavbar = () => {
@@ -43,4 +43,4 @@ function ScrollNavbar({ data }) {
     );
 }
 
-export default ScrollNavbar;
+export default AltNavbar;

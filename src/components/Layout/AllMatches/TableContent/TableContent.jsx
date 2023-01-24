@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function TableBody({ data }) {
+function TableContent({ data }) {
     const [color, setColor] = useState({
         home: 'bg-dark',
         away: 'bg-dark',
@@ -72,4 +72,4 @@ function TableBody({ data }) {
     );
 }
 
-export default TableBody;
+export default TableContent;

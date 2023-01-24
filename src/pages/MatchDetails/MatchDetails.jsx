@@ -5,7 +5,7 @@ import {
     Card,
     Backdrop,
     MatchInfo,
-    ScrollNavbar,
+    AltNavbar,
     Goal,
     EventType,
     EventDetails,
@@ -146,7 +146,7 @@ function MatchDetails() {
         apiLoad && (
             <>
                 <Navbar data={matchData} />
-                <ScrollNavbar data={matchData} />
+                <AltNavbar data={matchData} />
                 <Card className='p-4'>
                     <MatchInfo data={matchData} />
                 </Card>
