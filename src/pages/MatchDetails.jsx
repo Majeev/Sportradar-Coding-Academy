@@ -27,7 +27,7 @@ function MatchDetails() {
         const fetchDetails = async () => {
             try {
                 const res = await fetch(
-                    `https://api.sportradar.us/soccer/trial/v4/en/sport_events/${params.id}/timeline.json?api_key=rs46bm6e9ztp55xegwkbgf3m`
+                    `https://api.sportradar.us/soccer/trial/v4/en/sport_events/${params.id}/timeline.json?api_key=2p8d96jgxym9u422zy5rnhjp`
                 );
                 const data = await res.json();
 

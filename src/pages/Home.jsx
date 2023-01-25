@@ -24,7 +24,7 @@ function Home() {
         const fetchSeason = async () => {
             try {
                 const res = await fetch(
-                    `https://api.sportradar.us/soccer/trial/v4/en/seasons/${season.id}/schedules.json?api_key=rs46bm6e9ztp55xegwkbgf3m`
+                    `https://api.sportradar.us/soccer/trial/v4/en/seasons/${season.id}/schedules.json?api_key=2p8d96jgxym9u422zy5rnhjp`
                 );
                 const data = await res.json();
 
@@ -79,7 +79,7 @@ function Home() {
         const fetchAllSeasons = async () => {
             try {
                 const res = await fetch(
-                    'https://api.sportradar.us/soccer/trial/v4/en/competitions/sr:competition:202/seasons.json?api_key=rs46bm6e9ztp55xegwkbgf3m'
+                    'https://api.sportradar.us/soccer/trial/v4/en/competitions/sr:competition:202/seasons.json?api_key=2p8d96jgxym9u422zy5rnhjp'
                 );
                 const data = await res.json();
 
