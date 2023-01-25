@@ -1,22 +1,172 @@
-body {
-    background-color: #1f1f1f;
-    overflow-x: hidden;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap');
+
+#root {
+    /* Font size */
+    --font-small: 1.4rem;
+    --font-medium: 1.6rem;
+    --font-large: 2.3rem;
+    --font-xlarge: 3rem;
+    /* Colors */
+    --button-action: rgb(245, 245, 245);
+    --select-color: rgb(231, 233, 234);
 }
 
-.select {
-    background-color: transparent;
-    color: white;
-    border: none;
+/* Utility classes */
+
+/* layout */
+.center-all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    box-sizing: border-box;
-    border-radius: 0;
 }
 
-option {
-    background-color: #f1f3f4;
+.grid-3x1 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.w-80 {
+    width: 80%;
+}
+
+.my-2r {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.separation {
+    border-bottom: 1px solid rgb(201, 203, 204) !important;
+}
+
+.icon {
+    translate: 0 -2px;
+    color: #755139ff;
+}
+
+.scale:hover {
+    scale: 1.01;
+}
+
+.active {
+    background-color: var(--button-action);
+}
+
+/* font size & weight */
+
+.font-small {
+    font-size: var(--font-small);
+}
+
+.font-medium {
+    font-size: var(--font-medium);
+}
+
+.font-large {
+    font-size: var(--font-large);
+}
+
+.font-xlarge {
+    font-size: var(--font-xlarge);
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+/* box shadows */
+
+.box-shadow-58 {
+    box-shadow: 0 1px 6px rgb(32 33 36 / 58%);
+}
+.box-shadow-28 {
+    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+}
+
+/* colors */
+
+.yellow_card,
+.possible_goal {
+    color: #fdd20eff;
+}
+
+.red_card,
+.penalty_awarded,
+.injury,
+.video_assistant_referee_over,
+.shot_off_target {
+    color: #990011ff;
+}
+
+.substitution,
+.shot_on_target,
+.injury_return {
+    color: #2bae66ff;
+}
+
+.offside {
+    color: #f2aa4cff;
+}
+
+.match_ended,
+.match_started {
     color: black;
 }
 
+.score_change {
+    color: #00539cff;
+}
+
+.video_assistant_referee {
+    color: #8d48fc;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+button {
+    background: none;
+    border: 0;
+    transition: all 0.5s;
+}
+
+.select {
+    border: 0;
+    background-color: var(--select-color);
+}
+
 .select:focus {
-    box-shadow: inset 0 0 10px rgba(102, 175, 233, 0.6);
+    box-shadow: none;
+    outline: none !important;
+}
+
+.table > thead {
+    vertical-align: middle;
+}
+
+a {
+    text-decoration: none;
+}
+
+@media (max-width: 576px) {
+    .font-small {
+        font-size: calc(var(--font-small) * 0.75);
+    }
+    .font-medium {
+        font-size: calc(var(--font-medium) * 0.75);
+    }
+    .font-large {
+        font-size: calc(var(--font-large) * 0.75);
+    }
+    .font-xlarge {
+        font-size: calc(var(--font-xlarge) * 0.75);
+    }
 }
