@@ -5,7 +5,7 @@ import {
     SeasonsDropdown,
     SeasonsOption,
     Header,
-} from '../../components/index';
+} from '../components/index';
 import Container from 'react-bootstrap/Container';
 
 function Home() {

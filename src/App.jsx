@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router';
-import Home from './/pages/Home/Home';
-import MatchDetails from './pages/MatchDetails/MatchDetails';
+import Home from './pages/Home';
+import MatchDetails from './pages/MatchDetails';
 import NotFound from './pages/NotFound';
 
 function App() {

@@ -26,14 +26,14 @@ function MatchStatistics({ statistics, data }) {
                     <td>{statistics.away_shots}</td>
                 </tr>
                 <tr>
-                    <td>{statistics.home_shots_on_target}</td>
+                    <td>{statistics.home_on_target}</td>
                     <td>Shots on target</td>
-                    <td>{statistics.away_shots_on_target}</td>
+                    <td>{statistics.away_on_target}</td>
                 </tr>
                 <tr>
-                    <td>{statistics.home_shots_saved || '0'}</td>
+                    <td>{statistics.home_saved || '0'}</td>
                     <td>Shots saved</td>
-                    <td>{statistics.away_shots_saved || '0'}</td>
+                    <td>{statistics.away_saved || '0'}</td>
                 </tr>
                 <tr>
                     <td>{statistics.home_fouls}</td>

@@ -1,5 +1,6 @@
 import { useEffect, React, useState } from 'react';
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import {
     Navbar,
     Card,
@@ -11,8 +12,7 @@ import {
     EventDetails,
     MatchStatistics,
     Button,
-} from '../../components/index';
-import { useNavigate } from 'react-router-dom';
+} from '../components/index';
 
 function MatchDetails() {
     const params = useParams();
@@ -30,6 +30,8 @@ function MatchDetails() {
                     `https://api.sportradar.us/soccer/trial/v4/en/sport_events/${params.id}/timeline.json?api_key=rs46bm6e9ztp55xegwkbgf3m`
                 );
                 const data = await res.json();
+
+                setNews(data.timeline);
 
                 if (!res.ok) {
                     throw new Error(res.status);
@@ -50,9 +52,10 @@ function MatchDetails() {
                     },
                 } = data;
 
+                const [home, away] = competitors;
+
                 // Match data assing
 
-                const [home, away] = competitors;
                 const matches = {
                     home: home.name,
                     homeAbbreviation: home.abbreviation,
@@ -65,65 +68,35 @@ function MatchDetails() {
                     awayScore: away_score,
                 };
 
-                // Match statistics destructure
-
-                const [homeStats, awayStats] = teams;
-                const {
-                    statistics: {
-                        ball_possession: home_possession,
-                        shots_total: home_shots,
-                        shots_on_target: home_shots_on_target,
-                        shots_saved: home_shots_saved,
-                        fouls: home_fouls,
-                        yellow_cards: home_yellow_cards,
-                        red_cards: home_red_cards,
-                        corner_kicks: home_corners,
-                        throw_ins: home_throw_ins,
-                    },
-                } = homeStats;
-
-                const {
-                    statistics: {
-                        ball_possession: away_possession,
-                        shots_total: away_shots,
-                        shots_on_target: away_shots_on_target,
-                        shots_saved: away_shots_saved,
-                        fouls: away_fouls,
-                        yellow_cards: away_yellow_cards,
-                        red_cards: away_red_cards,
-                        corner_kicks: away_corners,
-                        throw_ins: away_throw_ins,
-                    },
-                } = awayStats;
+                setMatchData(matches);
 
                 // Match statistics assign
 
+                const [homeStats, awayStats] = teams;
+
                 const stats = {
-                    home_possession,
-                    away_possession,
-                    home_shots,
-                    away_shots,
-                    home_shots_on_target,
-                    away_shots_on_target,
-                    home_shots_saved,
-                    away_shots_saved,
-                    home_fouls,
-                    away_fouls,
-                    home_yellow_cards,
-                    away_yellow_cards,
-                    home_red_cards,
-                    away_red_cards,
-                    home_corners,
-                    away_corners,
-                    home_throw_ins,
-                    away_throw_ins,
+                    home_possession: homeStats.statistics.ball_possession,
+                    away_possession: awayStats.statistics.ball_possession,
+                    home_shots: homeStats.statistics.shots_total,
+                    away_shots: awayStats.statistics.shots_total,
+                    home_on_target: homeStats.statistics.shots_on_target,
+                    away_on_target: awayStats.statistics.shots_on_target,
+                    home_saved: homeStats.statistics.shots_saved,
+                    away_saved: awayStats.statistics.shots_saved,
+                    home_fouls: homeStats.statistics.fouls,
+                    away_fouls: awayStats.statistics.fouls,
+                    home_yellow_cards: homeStats.statistics.yellow_cards,
+                    away_yellow_cards: awayStats.statistics.yellow_cards,
+                    home_red_cards: homeStats.statistics.red_cards,
+                    away_red_cards: awayStats.statistics.red_cards,
+                    home_corners: homeStats.statistics.corner_kicks,
+                    away_corners: awayStats.statistics.corner_kicks,
+                    home_throw_ins: homeStats.statistics.throw_ins,
+                    away_throw_ins: awayStats.statistics.throw_ins,
                 };
 
-                // Setting states
-
-                setMatchData(matches);
                 setStatistics(stats);
-                setNews(data.timeline);
+
                 setApiLoad(true);
             } catch (err) {
                 if (err.message === '404') {
@@ -134,7 +107,7 @@ function MatchDetails() {
                     alert('Internal Server Error, please try again later');
                 } else {
                     alert(
-                        'Server burned down (or CORS Policy is blocking request again)'
+                        'Server burned down (or CORS Policy is blocking request again'
                     );
                 }
             }
@@ -168,8 +141,16 @@ function MatchDetails() {
                 </Card>
                 <Card>
                     <div className={`d-flex w-100 justify-content-around `}>
-                        <Button title='Timeline' onClick={toggleTimeline} className={showTimeline && 'active'} />
-                        <Button title='Statistics' onClick={toggleStats} className={showStats && 'active'} />
+                        <Button
+                            title='Timeline'
+                            onClick={toggleTimeline}
+                            className={showTimeline && 'active'}
+                        />
+                        <Button
+                            title='Statistics'
+                            onClick={toggleStats}
+                            className={showStats && 'active'}
+                        />
                     </div>
                 </Card>
                 {showTimeline && (
