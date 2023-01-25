@@ -12,6 +12,7 @@ import {
     MatchStatistics,
     Button,
 } from '../../components/index';
+import { useNavigate } from 'react-router-dom';
 
 function MatchDetails() {
     const params = useParams();
@@ -29,7 +30,10 @@ function MatchDetails() {
                     `https://api.sportradar.us/soccer/trial/v4/en/sport_events/${params.id}/timeline.json?api_key=rs46bm6e9ztp55xegwkbgf3m`
                 );
                 const data = await res.json();
-                console.log(data);
+
+                if (!res.ok) {
+                    throw new Error(res.status);
+                }
 
                 // Match data destructure
 
@@ -121,13 +125,25 @@ function MatchDetails() {
                 setStatistics(stats);
                 setNews(data.timeline);
                 setApiLoad(true);
-            } catch (error) {
-                alert('Match statistics loading error. Please refresh page');
+            } catch (err) {
+                if (err.message === '404') {
+                    navigate('/*');
+                } else if (err.message === '403') {
+                    alert('Data fetch error. Please Refresh the page');
+                } else if (err.message === '500') {
+                    alert('Internal Server Error, please try again later');
+                } else {
+                    alert(
+                        'Server burned down (or CORS Policy is blocking request again)'
+                    );
+                }
             }
         };
 
         fetchDetails();
     }, []);
+
+    const navigate = useNavigate();
 
     const toggleTimeline = () => {
         !showTimeline || showStats
@@ -152,8 +168,8 @@ function MatchDetails() {
                 </Card>
                 <Card>
                     <div className={`d-flex w-100 justify-content-around `}>
-                        <Button title='Timeline' onClick={toggleTimeline} />
-                        <Button title='Statistics' onClick={toggleStats} />
+                        <Button title='Timeline' onClick={toggleTimeline} className={showTimeline && 'active'} />
+                        <Button title='Statistics' onClick={toggleStats} className={showStats && 'active'} />
                     </div>
                 </Card>
                 {showTimeline && (

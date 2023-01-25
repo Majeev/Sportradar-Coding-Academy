@@ -8,9 +8,9 @@ function Navbar({ data }) {
 
     return (
         <div
-            className={`d-flex text-center align-items-center font-small ${css.navbar}`}>
+            className={`d-flex text-center align-items-center font-small text-light ${css.navbar}`}>
             <button
-                className={`font-large ${css.navbar__return}`}
+                className={`font-large text-light ${css.navbar__return}`}
                 onClick={() => navigate(-1)}>
                 <FiArrowLeft />
             </button>

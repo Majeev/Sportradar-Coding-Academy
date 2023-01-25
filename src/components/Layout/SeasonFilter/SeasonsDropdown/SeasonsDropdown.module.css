@@ -1,3 +1,3 @@
 .select__container {
-    background-color: rgb(231, 233, 234);
+    background-color: var(--select-color);
 }

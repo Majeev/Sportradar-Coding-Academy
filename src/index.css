@@ -7,6 +7,9 @@
     --font-medium: 1.6rem;
     --font-large: 2.3rem;
     --font-xlarge: 3rem;
+    /* Colors */
+    --button-action: rgb(245, 245, 245);
+    --select-color: rgb(231, 233, 234);
 }
 
 /* Utility classes */
@@ -39,6 +42,14 @@
 .icon {
     translate: 0 -2px;
     color: #755139ff;
+}
+
+.scale:hover {
+    scale: 1.01;
+}
+
+.active {
+    background-color: var(--button-action);
 }
 
 /* font size & weight */
@@ -119,21 +130,18 @@ html {
 }
 
 body {
-    background-color: #f8f9fa;
-    overflow-x: hidden;
     font-family: 'Open Sans', sans-serif;
 }
 
 button {
     background: none;
     border: 0;
+    transition: all 0.5s;
 }
 
 .select {
-    color: black;
     border: 0;
-    background-color: rgb(231, 233, 234);
-    border-radius: 0;
+    background-color: var(--select-color);
 }
 
 .select:focus {
@@ -143,11 +151,6 @@ button {
 
 .table > thead {
     vertical-align: middle;
-}
-
-option {
-    background-color: #f1f3f4;
-    color: black;
 }
 
 a {

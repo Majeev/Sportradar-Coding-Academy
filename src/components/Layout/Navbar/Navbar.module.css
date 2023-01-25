@@ -1,6 +1,5 @@
 .navbar {
     background-color: rgba(0, 0, 0, 0.85);
-    color: white;
 }
 
 .navbar > * {
@@ -11,6 +10,5 @@
 
 .navbar__return {
     translate: 0 -3%;
-    color: white;
     margin-left: 2.4rem;
 }
