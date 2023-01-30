@@ -4,9 +4,13 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
+import { ApiProvider } from '@reduxjs/toolkit/query/react';
+import { api } from './components/services/services';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
+    <ApiProvider api={api}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </ApiProvider>
 );
