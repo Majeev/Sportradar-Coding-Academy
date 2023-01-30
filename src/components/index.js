@@ -14,6 +14,7 @@ import EventDetails from './Layout/Match/TimelineEvents/EventDetails';
 import MatchStatistics from './Layout/Match/MatchStatistics';
 import Button from './UI/Button/Button';
 import Substitution from './Layout/Match/TimelineEvents/Substitution';
+import Loading from './Layout/Loading/Loading';
 
 export {
     Navbar,
@@ -32,4 +33,5 @@ export {
     MatchStatistics,
     Button,
     Substitution,
+    Loading
 };
