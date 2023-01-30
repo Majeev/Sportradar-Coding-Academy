@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
     TableContent,
     TableHeaders,
@@ -12,6 +13,7 @@ import {
     useGetAllSeasonsQuery,
     useGetSeasonQuery,
 } from '../components/services/services';
+
 
 function Home() {
     const [season, setSeason] = useState({
@@ -29,6 +31,16 @@ function Home() {
     const handleChange = (option) => {
         setSeason(option);
     };
+
+    const navigate = useNavigate();
+
+    if (error || allError) {
+        if (error.status === 404 || allError.status === 400) {
+            navigate('/*');
+        } else {
+            alert('Error. Please refresh the page');
+        }
+    }
 
     if (isLoading || areLoading) {
         return <Loading />;

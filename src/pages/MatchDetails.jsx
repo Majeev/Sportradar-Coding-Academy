@@ -1,4 +1,4 @@
-import { useEffect, React, useState } from 'react';
+import { React, useState } from 'react';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -22,6 +22,7 @@ function MatchDetails() {
     const { data, error, isLoading } = useGetMatchQuery(params.id);
     const [showTimeline, setShowTimeline] = useState(false);
     const [showStats, setShowStats] = useState(false);
+    const navigate = useNavigate();
 
     const toggleTimeline = () => {
         !showTimeline || showStats
@@ -35,6 +36,14 @@ function MatchDetails() {
     };
 
     const unwantedNews = ['period_start', 'period_score', 'injury_time_shown'];
+
+    if (error) {
+        if (error.status === 404) {
+            navigate('/*');
+        } else {
+            alert('Error. Please refresh the page');
+        }
+    }
 
     if (isLoading) {
         return <Loading />;
