@@ -9,11 +9,7 @@ import {
     Loading,
 } from '../components/index';
 import Container from 'react-bootstrap/Container';
-import {
-    useGetAllSeasonsQuery,
-    useGetSeasonQuery,
-} from '../components/services/services';
-
+import { useGetAllSeasonsQuery, useGetSeasonQuery } from '../services/services';
 
 function Home() {
     const [season, setSeason] = useState({

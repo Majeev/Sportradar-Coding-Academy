@@ -15,7 +15,7 @@ import {
     Loading,
 } from '../components/index';
 
-import { useGetMatchQuery } from '../components/services/services';
+import { useGetMatchQuery } from '../services/services';
 
 function MatchDetails() {
     const params = useParams();
