@@ -1,5 +1,6 @@
 # Sportradar-Coding-Academy
 Football App for Ekstraklasa league.
+![My Image](MainPage.JPG)
 
 Application shows data for picked season.
 - Match competitors
