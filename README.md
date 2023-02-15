@@ -1,6 +1,6 @@
 # Sportradar-Coding-Academy
 Football App for Ekstraklasa league.
-<img src="./MainPage.jpg" alt="Alt text" title="Optional title">
+<img src="MainPage.jpg" alt="Alt text" title="Optional title">
 Application shows data for picked season.
 - Match competitors
 - Result
