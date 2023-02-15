@@ -22,6 +22,7 @@ Scrolling down triggers alternative navbar to show. User can press on alternativ
 
 ![Substition](SE_Substitution.JPG)
 ![Goal](SE_Goal.JPG)
+
 Special events, such as substitution or goal have its own styling.
 
 # IMPORTANT!
