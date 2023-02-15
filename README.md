@@ -1,6 +1,7 @@
 # Sportradar-Coding-Academy
 Football App for Ekstraklasa league.
-<img src="MainPage.jpg" alt="Alt text" title="Optional title">
+![MainPage](MainPage.JPG)
+
 Application shows data for picked season.
 - Match competitors
 - Result
@@ -12,8 +13,11 @@ After pressing on specific match, user is routed to match details page. This pag
 Special events, such as substitution or goal have its own styling.
 
 ![MatchDetails](MatchDetails.JPG)
+
 ![Stats](Stats.JPG)
+
 ![Substition](SE_Substitution.JPG)
+
 ![Goal](SE_Goal.JPG)
 
 # IMPORTANT!
